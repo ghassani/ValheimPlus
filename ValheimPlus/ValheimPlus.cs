@@ -76,6 +76,10 @@ namespace ValheimPlus
                 //Recipe Manager
                 if (Configuration.Current.RecipeManager.IsEnabled)  RecipeManager.Initialize();
                 else                                                RecipeManager.DeInitialize();
+
+                //Spawn Manager
+                if (Configuration.Current.SpawnManager.IsEnabled)  SpawnManager.Initialize();
+                else                                               SpawnManager.DeInitialize();
             }
         }
 

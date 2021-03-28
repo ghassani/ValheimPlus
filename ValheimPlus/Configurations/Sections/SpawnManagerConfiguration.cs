@@ -5,8 +5,8 @@ using System.Text;
 
 namespace ValheimPlus.Configurations.Sections
 {
-    public class SpawnSystemConfiguration : BaseConfig<SpawnSystemConfiguration>
+    public class SpawnManagerConfiguration : BaseConfig<SpawnManagerConfiguration>
     {
-
+        public string databaseFile { get; set; } = "spawns.json";
     }
 }

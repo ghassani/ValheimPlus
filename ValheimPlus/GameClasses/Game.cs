@@ -24,6 +24,11 @@ namespace ValheimPlus.GameClasses
             {
                 RecipeManager.instance.OnGameStart();
             }
+
+            if (SpawnManager.instance != null)
+            {
+                SpawnManager.instance.OnGameStart();
+            }
         }
     }
 

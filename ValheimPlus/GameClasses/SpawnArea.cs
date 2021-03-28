@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BepInEx;
-using HarmonyLib;
+﻿using HarmonyLib;
 using UnityEngine;
 
 namespace ValheimPlus.GameClasses
@@ -14,30 +8,10 @@ namespace ValheimPlus.GameClasses
     {
         private static void Postfix(ref SpawnArea __instance)
         {
-            if (ZNet.instance != null && !ZNet.instance.IsServer())  return;
-            
-            Debug.Log("SpawnArea.Awake()");
-
-            foreach(SpawnArea.SpawnData data in __instance.m_prefabs)
+            if (SpawnManager.instance != null)
             {
-                data.m_minLevel = 3;
-                data.m_maxLevel = 3;
-
-                Debug.Log($"SpawnArea.Awake() - Data: {data.m_prefab.name}");
+                SpawnManager.instance.SyncSpawnArea(__instance);
             }
-
-            //SpawnManagerMod.Instance.SpawnManager.AddSpawnArea(__instance);
-        }
-    }
-
-    [HarmonyPatch(typeof(SpawnArea), "SpawnOne")]
-    public static class SpawnArea_Patch_SpawnOne
-    {
-        private static void Postfix(ref SpawnArea __instance)
-        {
-            if (ZNet.instance != null && !ZNet.instance.IsServer())  return;
-            
-            Debug.Log("SpawnArea.SpawnOne()");
         }
     }
 }

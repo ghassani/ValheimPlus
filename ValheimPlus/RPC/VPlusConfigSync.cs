@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using BepInEx;
 using ValheimPlus.Configurations;
+using ValheimPlus.Utility;
 
 namespace ValheimPlus.RPC
 {
@@ -47,6 +48,12 @@ namespace ValheimPlus.RPC
                     RecipeManager.instance.Config.Serialize(pkg);
                 }
 
+                // Sync the spawn manager if it's enabled
+                if (SpawnManager.instance != null)
+                {
+                    pkg.Write(SpawnManager.instance.Config);
+                }
+
                 ZRoutedRpc.instance.InvokeRoutedRPC(sender, "VPlusConfigSync", new object[]
                 {
                     pkg
@@ -80,9 +87,7 @@ namespace ValheimPlus.RPC
                             }
 
                             tmpWriter.Flush(); //Flush to memStream
-                            memStream.Position = 0; //Rewind stream
-
-                            // Sync the recipe manager if it's enabled
+                            memStream.Position = 0; //Rewind stream                           
 
                             ValheimPlusPlugin.harmony.UnpatchSelf();
 
@@ -100,16 +105,33 @@ namespace ValheimPlus.RPC
                                 
                             ValheimPlusPlugin.harmony.PatchAll();
 
+                             // Read the recipe manager config if it's enabled
                             if (RecipeManager.instance != null)
                             {
                                 try
                                 {
                                     RecipeManager.instance.Config.Unserialize(configPkg);
                                     RecipeManager.instance.SyncRecipes();
+                                    ZLog.Log("Recieved Recipe Configuration");
                                 } 
                                 catch(System.Exception e)
                                 {
                                     ZLog.LogError($"Error syncing recipe manager configuration: {e.Message}");
+                                }                                
+                            }
+
+                             // Read the spawn manager config if it's enabled
+                            if (SpawnManager.instance != null)
+                            {
+                                try
+                                {
+                                    SpawnConfig readConfig = configPkg.ReadPackageable<SpawnConfig>();
+                                    SpawnManager.instance.UpdateFrom(readConfig);
+                                    ZLog.Log("Recieved Spawn Configuration");
+                                } 
+                                catch(System.Exception e)
+                                {
+                                    ZLog.LogError($"Error syncing spawn manager configuration: {e.Message}");
                                 }                                
                             }
 

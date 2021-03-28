@@ -45,7 +45,7 @@ namespace ValheimPlus.Configurations
         public GridAlignmentConfiguration GridAlignment { get; set; }
         public CraftFromChestConfiguration CraftFromChest { get; set; }
         public RecipeManagerConfiguration RecipeManager { get; set; }
-        public SpawnSystemConfiguration SpawnSystem { get; set; }
+        public SpawnManagerConfiguration SpawnManager { get; set; }
         public ValheimPlusConfiguration ValheimPlus { get; set; }
     }
 }
