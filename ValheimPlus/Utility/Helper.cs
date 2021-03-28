@@ -113,5 +113,34 @@ namespace ValheimPlus
         {
             return Math.Min(max, Math.Max(min, value));
         }
+
+        /// <summary>
+        /// Check to see if a given position is between a min and max from the center of the map
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        public static bool IsPositionMinMaxFromCenter(Vector3 position, float min, float max)
+        {
+            if (min < 0 || max < 0 )    return false;
+            if (min > max)              return false;
+
+            return position.magnitude >= min && position.magnitude <= max;
+        }
+
+        /// <summary>
+        /// Check to see if a given position is at least a minimum distance from center
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="min"></param>
+        /// <returns></returns>
+        public static bool IsPositionMinFromCenter(Vector3 position, float min)
+        {
+            if (min < 0 )    return false;
+            if (min == 0)    return true;
+
+            return position.magnitude >= min;
+        }
     }
 }
