@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace ValheimPlus
     static class GameObjectAssistant
     {
         private static ConcurrentDictionary<float, Stopwatch> stopwatches = new ConcurrentDictionary<float, Stopwatch>();
+        
+        private static Dictionary<string, GameObject> PrefabObjectCache = new Dictionary<string, GameObject>();
 
         public static Stopwatch GetStopwatch(GameObject o)
         {
@@ -37,6 +40,57 @@ namespace ValheimPlus
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Get a game object prefab by its name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static GameObject GetGameObjectPrefab(string name)
+        {
+            GameObject result = null;
+
+            if ( ( result = ObjectDB.instance.GetItemPrefab(name) ) == null )
+            {
+                foreach(GameObject go in Resources.FindObjectsOfTypeAll<GameObject>())
+                {
+                    if (go.name == name)
+                    {
+                        return go;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get a game object by its name, with cached lookup
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static GameObject GetGameObjectPrefabCached(string name)
+        {
+            if (PrefabObjectCache.ContainsKey(name))
+            {
+                return PrefabObjectCache[name];
+            }
+
+            GameObject result = GetGameObjectPrefab(name);
+
+            if (result != null)
+            {
+                PrefabObjectCache[name] = result;
+            }
+
+            return result;
+        }
+
+        static public string NormalizeObjectName(string name)
+        {
+            return name.Replace("(Clone)", "")
+                .Replace("(clone)", "");
         }
     }
 }
