@@ -15,11 +15,6 @@ namespace ValheimPlus
         public int? MaxLevel;
         public float? Weight;
 
-        public SpawnAreaDataModifierModification()
-        {
-
-        }
-
         public void Apply(SpawnArea system, SpawnArea.SpawnData data)
         {
             GameObject go = null;
@@ -50,10 +45,10 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Serialize(ZPackage package)
         {
-            package.WriteNullableString(ObjectName);
-            package.Write(MinLevel);
-            package.Write(MaxLevel);
-            package.Write(Weight);
+            package.WriteNullable(ObjectName);
+            package.WriteNullable(MinLevel);
+            package.WriteNullable(MaxLevel);
+            package.WriteNullable(Weight);
         }
         
         /// <summary>
@@ -62,10 +57,10 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            ObjectName = package.ReadNullableString();
-            MinLevel = package.ReadInt();
-            MaxLevel = package.ReadInt();
-            Weight = package.ReadSingle();
+            ObjectName  = package.ReadNullableString();
+            MinLevel    = package.ReadNullableInt();
+            MaxLevel    = package.ReadNullableInt();
+            Weight      = package.ReadNullableSingle();
         }
     }
 }

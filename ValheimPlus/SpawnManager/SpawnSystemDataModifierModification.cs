@@ -119,26 +119,26 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Serialize(ZPackage package)
         {
-            package.Write(MinimumLevel);
-            package.Write(MaximumLevel);
-            package.Write(HuntPlayer);
-            package.Write(SpawnAtDay);
-            package.Write(SpawnAtNight);
-            package.Write(MinimumAltitude);
-            package.Write(MaximumAltitude);
-            package.Write(SpawnInterval);
-            package.Write(SpawnChance);
-            package.Write(SpawnRadiusMin);
-            package.Write(SpawnRadiusMax);
-            package.WriteNullableString(RequiredGlobalKey);
-            package.WriteNullableStringList(RequiredEnvironments);
-            package.Write(GroupSizeMin);
-            package.Write(GroupSizeMax);
-            package.Write(SpawnDistance);
-            package.Write(MaxSpawned);
-            package.Write(LevelUpMinCenterDistance);
-            package.WriteNullableStringList(Biomes);
-            package.WriteNullableStringList(BiomeAreas);
+            package.WriteNullable(MinimumLevel);
+            package.WriteNullable(MaximumLevel);
+            package.WriteNullable(HuntPlayer);
+            package.WriteNullable(SpawnAtDay);
+            package.WriteNullable(SpawnAtNight);
+            package.WriteNullable(MinimumAltitude);
+            package.WriteNullable(MaximumAltitude);
+            package.WriteNullable(SpawnInterval);
+            package.WriteNullable(SpawnChance);
+            package.WriteNullable(SpawnRadiusMin);
+            package.WriteNullable(SpawnRadiusMax);
+            package.WriteNullable(RequiredGlobalKey);
+            package.WriteNullable(RequiredEnvironments);
+            package.WriteNullable(GroupSizeMin);
+            package.WriteNullable(GroupSizeMax);
+            package.WriteNullable(SpawnDistance);
+            package.WriteNullable(MaxSpawned);
+            package.WriteNullable(LevelUpMinCenterDistance);
+            package.WriteNullable(Biomes);
+            package.WriteNullable(BiomeAreas);
         }
         
         /// <summary>
@@ -147,26 +147,26 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            MinimumLevel = package.ReadInt();
-            MaximumLevel = package.ReadInt();
-            HuntPlayer = package.ReadBool();
-            SpawnAtDay = package.ReadBool();
-            SpawnAtNight = package.ReadBool();
-            MinimumAltitude = package.ReadSingle();
-            MaximumAltitude = package.ReadSingle();
-            SpawnInterval = package.ReadSingle();
-            SpawnChance = package.ReadSingle();
-            SpawnRadiusMin = package.ReadSingle();
-            SpawnRadiusMax = package.ReadSingle();
-            RequiredGlobalKey = package.ReadNullableString();
-            RequiredEnvironments = package.ReadNullableStringList();
-            GroupSizeMin = package.ReadInt();
-            GroupSizeMax = package.ReadInt();
-            SpawnDistance = package.ReadSingle();
-            MaxSpawned = package.ReadInt();
-            LevelUpMinCenterDistance = package.ReadSingle();  
-            Biomes = package.ReadNullableStringList();
-            BiomeAreas = package.ReadNullableStringList();
+            MinimumLevel                = package.ReadNullableInt();
+            MaximumLevel                = package.ReadNullableInt();
+            HuntPlayer                  = package.ReadNullableBool();
+            SpawnAtDay                  = package.ReadNullableBool();
+            SpawnAtNight                = package.ReadNullableBool();
+            MinimumAltitude             = package.ReadNullableSingle();
+            MaximumAltitude             = package.ReadNullableSingle();
+            SpawnInterval               = package.ReadNullableSingle();
+            SpawnChance                 = package.ReadNullableSingle();
+            SpawnRadiusMin              = package.ReadNullableSingle();
+            SpawnRadiusMax              = package.ReadNullableSingle();
+            RequiredGlobalKey           = package.ReadNullableString();
+            RequiredEnvironments        = package.ReadNullableStringList();
+            GroupSizeMin                = package.ReadNullableInt();
+            GroupSizeMax                = package.ReadNullableInt();
+            SpawnDistance               = package.ReadNullableSingle();
+            MaxSpawned                  = package.ReadNullableInt();
+            LevelUpMinCenterDistance    = package.ReadNullableSingle();  
+            Biomes                      = package.ReadNullableStringList();
+            BiomeAreas                  = package.ReadNullableStringList();
         }
     }
 }

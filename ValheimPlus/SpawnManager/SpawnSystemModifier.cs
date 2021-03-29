@@ -118,6 +118,7 @@ namespace ValheimPlus
             package.Write(Condition);
             package.Write(Modification);
             package.Write(SpawnModifiers);
+            package.Write(SpawnAdditions);
             package.Write(Priority);
         }
         
@@ -127,10 +128,11 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            Condition = package.ReadPackageable<SpawnSystemModifierCondition>();
-            Modification = package.ReadPackageable<SpawnSystemModifierModification>();
-            SpawnModifiers = package.ReadPackageableList<SpawnSystemDataModifier>();
-            Priority = package.ReadInt();
+            Condition       = package.ReadPackageable<SpawnSystemModifierCondition>();
+            Modification    = package.ReadPackageable<SpawnSystemModifierModification>();
+            SpawnModifiers  = package.ReadPackageableList<SpawnSystemDataModifier>();
+            SpawnAdditions  = package.ReadPackageableList<SpawnSystemDataAddition>();
+            Priority        = package.ReadInt();
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using ValheimPlus.Configurations;
+using ValheimPlus.Utility;
 
 namespace ValheimPlus
 {
@@ -16,14 +17,6 @@ namespace ValheimPlus
         public SpawnConfig Config { get; internal set; } = new SpawnConfig();  
         public static SpawnManager instance { get; internal set; } = null;
 
-        public SpawnManager()
-        {
-
-        }
-        ~SpawnManager()
-        {
-
-        }
         /// <summary>
         /// Initializes the global instance
         /// </summary>
@@ -245,7 +238,7 @@ namespace ValheimPlus
 
                 Debug.Log($"Applying On CreatureSpawner {spawner.name} w/ {spawner.m_creaturePrefab.name}");
 
-                modifier.Modifications.Apply(spawner);
+                modifier.Modification.Apply(spawner);
             }
         }
 
@@ -333,7 +326,8 @@ namespace ValheimPlus
                     catch (System.Exception e)
                     {
                         Debug.Log($"Error parsing json file `{path}` - {e.Message}");
-                    }
+                        Debug.Log(e.StackTrace);
+                    }                   
                 }
             }
         }

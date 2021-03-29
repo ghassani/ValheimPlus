@@ -8,10 +8,10 @@ namespace ValheimPlus
     [Serializable]
     public class SpawnAreaModifier : IZPackageable
     {
-        public SpawnAreaModifierCondition Condition = new SpawnAreaModifierCondition();
-        public SpawnAreaModifierModification Modification = new SpawnAreaModifierModification();
-        public List<SpawnAreaDataModifier> SpawnModifiers  = new List<SpawnAreaDataModifier>();
-        public List<SpawnAreaDataAddition> SpawnAdditions = new List<SpawnAreaDataAddition>();
+        public SpawnAreaModifierCondition Condition         = new SpawnAreaModifierCondition();
+        public SpawnAreaModifierModification Modification   = new SpawnAreaModifierModification();
+        public List<SpawnAreaDataModifier> SpawnModifiers   = new List<SpawnAreaDataModifier>();
+        public List<SpawnAreaDataAddition> SpawnAdditions   = new List<SpawnAreaDataAddition>();
         public int Priority = 0;
 
         public bool IsValid()
@@ -131,11 +131,11 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {            
-            Condition = package.ReadPackageable<SpawnAreaModifierCondition>();
-            Modification = package.ReadPackageable<SpawnAreaModifierModification>();
-            SpawnModifiers = package.ReadPackageableList<SpawnAreaDataModifier>();
-            SpawnAdditions = package.ReadPackageableList<SpawnAreaDataAddition>();
-            Priority = package.ReadInt();
+            Condition       = package.ReadPackageable<SpawnAreaModifierCondition>();
+            Modification    = package.ReadPackageable<SpawnAreaModifierModification>();
+            SpawnModifiers  = package.ReadPackageableList<SpawnAreaDataModifier>();
+            SpawnAdditions  = package.ReadPackageableList<SpawnAreaDataAddition>();
+            Priority        = package.ReadInt();
         }
     }
 }

@@ -40,15 +40,16 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Serialize(ZPackage package)
         {
-            package.Write(SpawnTimer);
-            package.Write(OnGroundOnly);
-            package.Write(MaxTotal);
-            package.Write(FarRadius);
-            package.Write(SpawnRadius);
-            package.Write(TriggerDistance);
-            package.Write(SpawnIntervalSec);
-            package.Write(LevelupChance);
-            package.Write(NearRadius);
+            package.WriteNullable(SpawnTimer);
+            package.WriteNullable(OnGroundOnly);
+            package.WriteNullable(MaxTotal);
+            package.WriteNullable(MaxNear);
+            package.WriteNullable(FarRadius);
+            package.WriteNullable(SpawnRadius);
+            package.WriteNullable(TriggerDistance);
+            package.WriteNullable(SpawnIntervalSec);
+            package.WriteNullable(LevelupChance);
+            package.WriteNullable(NearRadius);
         }
         
         /// <summary>
@@ -57,15 +58,16 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {            
-            SpawnTimer          = package.ReadSingle();
-            OnGroundOnly        = package.ReadBool();
-            MaxTotal            = package.ReadInt();
-            FarRadius           = package.ReadSingle();
-            SpawnRadius         = package.ReadSingle();
-            TriggerDistance     = package.ReadSingle();
-            SpawnIntervalSec    = package.ReadSingle();
-            LevelupChance       = package.ReadSingle();
-            NearRadius          = package.ReadSingle();
+            SpawnTimer          = package.ReadNullableSingle();
+            OnGroundOnly        = package.ReadNullableBool();
+            MaxTotal            = package.ReadNullableInt();
+            MaxNear             = package.ReadNullableInt();
+            FarRadius           = package.ReadNullableSingle();
+            SpawnRadius         = package.ReadNullableSingle();
+            TriggerDistance     = package.ReadNullableSingle();
+            SpawnIntervalSec    = package.ReadNullableSingle();
+            LevelupChance       = package.ReadNullableSingle();
+            NearRadius          = package.ReadNullableSingle();
         }
     }
 }

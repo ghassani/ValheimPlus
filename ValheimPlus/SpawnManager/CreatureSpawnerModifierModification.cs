@@ -56,17 +56,17 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Serialize(ZPackage package)
         {
-            package.WriteNullableString(ObjectName);
-            package.Write(RequireSpawnArea);
-            package.Write(SpawnAtDay);
-            package.Write(SpawnAtNight);
-            package.Write(SpawnInPlayerBase);
-            package.Write(TriggerDistance);
-            package.Write(RespawnTimeMinutes);
-            package.Write(LevelupChance);
-            package.Write(MinLevel);
-            package.Write(MaxLevel);
-            package.Write(TriggerNoise);
+            package.WriteNullable(ObjectName);
+            package.WriteNullable(RequireSpawnArea);
+            package.WriteNullable(SpawnAtDay);
+            package.WriteNullable(SpawnAtNight);
+            package.WriteNullable(SpawnInPlayerBase);
+            package.WriteNullable(TriggerDistance);
+            package.WriteNullable(RespawnTimeMinutes);
+            package.WriteNullable(LevelupChance);
+            package.WriteNullable(MinLevel);
+            package.WriteNullable(MaxLevel);
+            package.WriteNullable(TriggerNoise);
         }
         
         /// <summary>
@@ -75,17 +75,17 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            ObjectName = package.ReadNullableString();
-            RequireSpawnArea = package.ReadBool();
-            SpawnAtDay = package.ReadBool();
-            SpawnAtNight = package.ReadBool();
-            SpawnInPlayerBase = package.ReadBool();
-            TriggerDistance = package.ReadInt();
-            RespawnTimeMinutes = package.ReadInt();
-            LevelupChance = package.ReadInt();
-            MinLevel = package.ReadInt();
-            MaxLevel = package.ReadInt();
-            TriggerNoise = package.ReadInt();
+            ObjectName          = package.ReadNullableString();
+            RequireSpawnArea    = package.ReadNullableBool();
+            SpawnAtDay          = package.ReadNullableBool();
+            SpawnAtNight        = package.ReadNullableBool();
+            SpawnInPlayerBase   = package.ReadNullableBool();
+            TriggerDistance     = package.ReadNullableSingle();
+            RespawnTimeMinutes  = package.ReadNullableSingle();
+            LevelupChance       = package.ReadNullableSingle();
+            MinLevel            = package.ReadNullableInt();
+            MaxLevel            = package.ReadNullableInt();
+            TriggerNoise        = package.ReadNullableSingle();
         }
     }
 }

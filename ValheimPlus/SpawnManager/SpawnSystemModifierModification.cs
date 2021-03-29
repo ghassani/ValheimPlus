@@ -8,11 +8,6 @@ namespace ValheimPlus
     {
         public float? LevelUpChance;
 
-        public SpawnSystemModifierModification()
-        {
-
-        }
-
         public void Apply(SpawnSystem system)
         {
             if ( LevelUpChance != null ) system.m_levelupChance = LevelUpChance.Value;            
@@ -24,7 +19,7 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Serialize(ZPackage package)
         {
-            package.Write(LevelUpChance);
+            package.WriteNullable(LevelUpChance);
         }
         
         /// <summary>
@@ -33,7 +28,7 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            LevelUpChance = package.ReadSingle();
+            LevelUpChance = package.ReadNullableSingle();
         }
     }
 }

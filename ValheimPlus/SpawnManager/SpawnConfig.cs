@@ -13,14 +13,9 @@ namespace ValheimPlus
     [Serializable]
     public class SpawnConfig : IZPackageable
     {
-        public List<SpawnSystemModifier> SpawnSystemModifiers = new List<SpawnSystemModifier>();
-        public List<SpawnAreaModifier> SpawnAreaModifiers = new List<SpawnAreaModifier>();
-        public List<CreatureSpawnerModifier> CreatureSpawnerModifiers = new List<CreatureSpawnerModifier>();
-
-        public SpawnConfig()
-        {
-
-        }
+        public List<SpawnSystemModifier> SpawnSystemModifiers           = new List<SpawnSystemModifier>();
+        public List<SpawnAreaModifier> SpawnAreaModifiers               = new List<SpawnAreaModifier>();
+        public List<CreatureSpawnerModifier> CreatureSpawnerModifiers   = new List<CreatureSpawnerModifier>();
 
         /// <summary>
         /// Serialize the object into a ZPackage
@@ -39,9 +34,9 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            SpawnSystemModifiers = package.ReadPackageableList<SpawnSystemModifier>();
-            SpawnAreaModifiers = package.ReadPackageableList<SpawnAreaModifier>();
-            CreatureSpawnerModifiers = package.ReadPackageableList<CreatureSpawnerModifier>();
+            SpawnSystemModifiers        = package.ReadPackageableList<SpawnSystemModifier>();
+            SpawnAreaModifiers          = package.ReadPackageableList<SpawnAreaModifier>();
+            CreatureSpawnerModifiers    = package.ReadPackageableList<CreatureSpawnerModifier>();
         }
 
         /// <summary>

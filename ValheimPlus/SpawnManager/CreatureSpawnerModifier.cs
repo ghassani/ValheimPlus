@@ -9,7 +9,7 @@ namespace ValheimPlus
     public class CreatureSpawnerModifier : IZPackageable
     {
         public CreatureSpawnerModifierCondition Condition = new CreatureSpawnerModifierCondition();
-        public CreatureSpawnerModifierModification Modifications = new CreatureSpawnerModifierModification();
+        public CreatureSpawnerModifierModification Modification = new CreatureSpawnerModifierModification();
         public int Priority = 0;
 
         public bool IsValid()
@@ -135,7 +135,7 @@ namespace ValheimPlus
         public void Serialize(ZPackage package)
         {
             package.Write(Condition);
-            package.Write(Modifications);
+            package.Write(Modification);
             package.Write(Priority);
         }
         
@@ -145,9 +145,9 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {           
-            Condition = package.ReadPackageable<CreatureSpawnerModifierCondition>();
-            Modifications = package.ReadPackageable<CreatureSpawnerModifierModification>();
-            Priority = package.ReadInt();
+            Condition       = package.ReadPackageable<CreatureSpawnerModifierCondition>();
+            Modification    = package.ReadPackageable<CreatureSpawnerModifierModification>();
+            Priority        = package.ReadInt();
         }
     }
 }

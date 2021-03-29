@@ -7,11 +7,11 @@ namespace ValheimPlus
     [Serializable]
     public class CreatureSpawnerModifierCondition : IZPackageable
     {
-        public List<String> MatchingNames = new List<String>();
-        public List<String> MatchingObjectNames = new List<String>();
+        public List<string> MatchingNames = new List<string>();
+        public List<string> MatchingObjectNames = new List<string>();
         public List<string> MatchingBiomes = new List<string>();
-        public List<String> ExcludingNames = new List<String>();
-        public List<String> ExcludingObjectNames = new List<String>();
+        public List<string> ExcludingNames = new List<string>();
+        public List<string> ExcludingObjectNames = new List<string>();
         public List<string> ExcludingBiomes = new List<string>();
         public float MinimumDistanceFromCenter = 0f;
         public float MaximumDistanceFromCenter = 0f;
@@ -51,16 +51,16 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            MatchingNames = package.ReadStringList();
-            MatchingObjectNames = package.ReadStringList();
-            MatchingBiomes = package.ReadStringList();
-            ExcludingNames = package.ReadStringList();
-            ExcludingObjectNames = package.ReadStringList();
-            ExcludingBiomes = package.ReadStringList();
-            MinimumDistanceFromCenter = package.ReadSingle();
-            MaximumDistanceFromCenter = package.ReadSingle();
-            MinimumDayCount = package.ReadInt();
-            MaximumDayCount = package.ReadInt();
+            MatchingNames               = package.ReadStringList();
+            MatchingObjectNames         = package.ReadStringList();
+            MatchingBiomes              = package.ReadStringList();
+            ExcludingNames              = package.ReadStringList();
+            ExcludingObjectNames        = package.ReadStringList();
+            ExcludingBiomes             = package.ReadStringList();
+            MinimumDistanceFromCenter   = package.ReadSingle();
+            MaximumDistanceFromCenter   = package.ReadSingle();
+            MinimumDayCount             = package.ReadInt();
+            MaximumDayCount             = package.ReadInt();
         }
     }
 }

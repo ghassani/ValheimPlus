@@ -20,7 +20,7 @@ namespace ValheimPlus
         /// </summary>
         /// <param name="package"></param>
         public void Serialize(ZPackage package)
-        {          
+        {
             package.Write(MatchingObjectNames);
             package.Write(ExcludingObjectNames);
         }
@@ -31,8 +31,8 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            MatchingObjectNames = package.ReadStringList();
-            ExcludingObjectNames = package.ReadStringList();
+            MatchingObjectNames     = package.ReadStringList();
+            ExcludingObjectNames    = package.ReadStringList();
         }
     }
 }

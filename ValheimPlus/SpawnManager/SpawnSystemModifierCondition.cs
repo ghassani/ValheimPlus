@@ -47,14 +47,14 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            MatchingNames = package.ReadStringList();
-            MatchingBiomes = package.ReadStringList();
-            ExcludingNames = package.ReadStringList();
-            ExcludingBiomes = package.ReadStringList();
-            MinimumDistanceFromCenter = package.ReadSingle();
-            MaximumDistanceFromCenter = package.ReadSingle();
-            MinimumDayCount = package.ReadInt();
-            MaximumDayCount = package.ReadInt();
+            MatchingNames               = package.ReadStringList();
+            MatchingBiomes              = package.ReadStringList();
+            ExcludingNames              = package.ReadStringList();
+            ExcludingBiomes             = package.ReadStringList();
+            MinimumDistanceFromCenter   = package.ReadSingle();
+            MaximumDistanceFromCenter   = package.ReadSingle();
+            MinimumDayCount             = package.ReadInt();
+            MaximumDayCount             = package.ReadInt();
         }
     }
 }

@@ -50,7 +50,7 @@ namespace ValheimPlus.RPC
 
                 // Sync the spawn manager if it's enabled
                 if (SpawnManager.instance != null)
-                {
+                {                    
                     pkg.Write(SpawnManager.instance.Config);
                 }
 
@@ -117,6 +117,7 @@ namespace ValheimPlus.RPC
                                 catch(System.Exception e)
                                 {
                                     ZLog.LogError($"Error syncing recipe manager configuration: {e.Message}");
+                                    ZLog.LogError(e.StackTrace);
                                 }                                
                             }
 
@@ -132,6 +133,7 @@ namespace ValheimPlus.RPC
                                 catch(System.Exception e)
                                 {
                                     ZLog.LogError($"Error syncing spawn manager configuration: {e.Message}");
+                                    ZLog.LogError(e.StackTrace);
                                 }                                
                             }
 

@@ -63,9 +63,9 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            Condition = package.ReadPackageable<SpawnAreaDataModifierCondition>();
-            Modification = package.ReadPackageable<SpawnAreaDataModifierModification>();
-            Priority = package.ReadInt();
+            Condition       = package.ReadPackageable<SpawnAreaDataModifierCondition>();
+            Modification    = package.ReadPackageable<SpawnAreaDataModifierModification>();
+            Priority        = package.ReadInt();
         }
     };
 }

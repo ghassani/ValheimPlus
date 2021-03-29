@@ -40,12 +40,12 @@ namespace ValheimPlus
         /// <param name="package"></param>
         public void Unserialize(ZPackage package)
         {
-            MatchingDataNames = package.ReadStringList();
-            MatchingObjectNames = package.ReadStringList();
-            MatchingGlobalKeys = package.ReadStringList();
-            ExcludingDataNames = package.ReadStringList();
-            ExcludingObjectNames = package.ReadStringList();
-            ExcludingGlobalKeys = package.ReadStringList();
+            MatchingDataNames       = package.ReadStringList();
+            MatchingObjectNames     = package.ReadStringList();
+            MatchingGlobalKeys      = package.ReadStringList();
+            ExcludingDataNames      = package.ReadStringList();
+            ExcludingObjectNames    = package.ReadStringList();
+            ExcludingGlobalKeys     = package.ReadStringList();
         }
     }
 }

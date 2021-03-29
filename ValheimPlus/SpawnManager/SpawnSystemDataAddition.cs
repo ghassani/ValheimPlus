@@ -7,8 +7,8 @@ namespace ValheimPlus
     [Serializable]
     public class SpawnSystemDataAddition : IZPackageable
     {
-        public String Name;
-        public String ObjectName;
+        public string Name;
+        public string ObjectName;
         public int MinimumLevel;
         public int MaximumLevel;
         public bool HuntPlayer;
@@ -120,6 +120,7 @@ namespace ValheimPlus
             MaximumAltitude             = package.ReadSingle();
             SpawnInterval               = package.ReadSingle();
             SpawnChance                 = package.ReadSingle();
+            SpawnRadiusMin              = package.ReadSingle();
             SpawnRadiusMax              = package.ReadSingle();
             RequiredGlobalKey           = package.ReadString();
             RequiredEnvironments        = package.ReadStringList();
