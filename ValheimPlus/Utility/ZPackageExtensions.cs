@@ -29,28 +29,29 @@ namespace ValheimPlus.Utility
         /// <param name="stringList"></param>
         public static void Write(this ZPackage pkg, List<string> stringList)
         {
-            pkg.Write(stringList.Count);
-
-            foreach (string s in stringList)
+            if ( stringList == null )
             {
-                pkg.Write(s);
-            }
-        }
-        public static void WriteNullableStringList(this ZPackage pkg, List<string> stringList)
-        {
-            if (stringList == null)
-            {
-                pkg.Write(-1);
+                pkg.Write(0);
                 return;
             }
-            
+
             pkg.Write(stringList.Count);
 
             foreach (string s in stringList)
             {
                 pkg.Write(s);
-            }            
+            }
         }
+        public static void WriteNullable(this ZPackage pkg, List<string> stringList)
+        {
+            pkg.Write(stringList != null);
+
+            if (stringList != null)
+            {                
+                Write(pkg, stringList);;
+            }          
+        }
+
         /// <summary>
         /// Read a StringList from a package
         /// </summary>
@@ -59,7 +60,6 @@ namespace ValheimPlus.Utility
         public static List<string> ReadStringList(this ZPackage pkg)
         {
             List<string> result = new List<string>();
-            
             int count = pkg.ReadInt();
 
             for (int i = 0; i < count; i++)
@@ -71,21 +71,15 @@ namespace ValheimPlus.Utility
         }
         public static List<string> ReadNullableStringList(this ZPackage pkg)
         {
-            int count = pkg.ReadInt();
-
-            if ( count < 0 )    return null;
-
-            List<string> result = new List<string>();
-
-            for (int i = 0; i < count; i++)
+            if (pkg.ReadBool())
             {
-                result.Add(pkg.ReadString());
+                return ReadStringList(pkg);
             }
 
-            return result;
+            return null;
         }
 
-        public static void Write(this ZPackage pkg, int? value)
+        public static void WriteNullable(this ZPackage pkg, int? value)
         {
             pkg.Write(value.HasValue);
             
@@ -94,11 +88,9 @@ namespace ValheimPlus.Utility
                 pkg.Write(value.Value);
             }
         }
-        public static int? ReadInt(this ZPackage pkg)
+        public static int? ReadNullableInt(this ZPackage pkg)
         {
-            bool hasValue = pkg.ReadBool();
-            
-            if (hasValue)
+            if (pkg.ReadBool())
             {
                 return pkg.ReadInt();
             }
@@ -106,7 +98,7 @@ namespace ValheimPlus.Utility
             return null;
         }
 
-        public static void Write(this ZPackage pkg, uint? value)
+        public static void WriteNullable(this ZPackage pkg, uint? value)
      {
             pkg.Write(value.HasValue);
             
@@ -115,11 +107,9 @@ namespace ValheimPlus.Utility
                 pkg.Write(value.Value);
             }
         }
-        public static uint? ReadUInt(this ZPackage pkg)
-        {
-            bool hasValue = pkg.ReadBool();
-            
-            if (hasValue)
+        public static uint? ReadNullableUInt(this ZPackage pkg)
+        {            
+            if (pkg.ReadBool())
             {
                 return pkg.ReadUInt();
             }
@@ -127,7 +117,7 @@ namespace ValheimPlus.Utility
             return null;
         }
 
-        public static void Write(this ZPackage pkg, long? value)
+        public static void WriteNullable(this ZPackage pkg, long? value)
         {
             pkg.Write(value.HasValue);
             
@@ -136,11 +126,9 @@ namespace ValheimPlus.Utility
                 pkg.Write(value.Value);
             }
         }
-        public static long? ReadLong(this ZPackage pkg)
-        {
-            bool hasValue = pkg.ReadBool();
-            
-            if (hasValue)
+        public static long? ReadNullableLong(this ZPackage pkg)
+        {            
+            if (pkg.ReadBool())
             {
                 return pkg.ReadLong();
             }
@@ -148,7 +136,7 @@ namespace ValheimPlus.Utility
             return null;
         }
         
-        public static void Write(this ZPackage pkg, ulong? value)
+        public static void WriteNullable(this ZPackage pkg, ulong? value)
         {
             pkg.Write(value.HasValue);
             
@@ -157,11 +145,9 @@ namespace ValheimPlus.Utility
                 pkg.Write(value.Value);
             }
         }
-        public static ulong? ReadULong(this ZPackage pkg)
-        {
-            bool hasValue = pkg.ReadBool();
-            
-            if (hasValue)
+        public static ulong? ReadNullableULong(this ZPackage pkg)
+        {            
+            if (pkg.ReadBool())
             {
                 return pkg.ReadULong();
             }
@@ -169,7 +155,7 @@ namespace ValheimPlus.Utility
             return null;
         }
 
-        public static void Write(this ZPackage pkg, float? value)
+        public static void WriteNullable(this ZPackage pkg, float? value)
         {
             pkg.Write(value.HasValue);
             
@@ -178,11 +164,9 @@ namespace ValheimPlus.Utility
                 pkg.Write(value.Value);
             }
         }
-        public static float? ReadSingle(this ZPackage pkg)
-        {
-            bool hasValue = pkg.ReadBool();
-            
-            if (hasValue)
+        public static float? ReadNullableSingle(this ZPackage pkg)
+        {           
+            if (pkg.ReadBool())
             {
                 return pkg.ReadSingle();
             }
@@ -190,7 +174,7 @@ namespace ValheimPlus.Utility
             return null;
         }
 
-        public static void Write(this ZPackage pkg, double? value)
+        public static void WriteNullable(this ZPackage pkg, double? value)
         {
             pkg.Write(value.HasValue);
             
@@ -200,18 +184,16 @@ namespace ValheimPlus.Utility
             }
         }
         
-        public static double? ReadDouble(this ZPackage pkg)
-        {
-            bool hasValue = pkg.ReadBool();
-            
-            if (hasValue)
+        public static double? ReadNullableDouble(this ZPackage pkg)
+        {            
+            if (pkg.ReadBool())
             {
                 return pkg.ReadDouble();
             }
 
             return null;
         }
-        public static void Write(this ZPackage pkg, bool? value)
+        public static void WriteNullable(this ZPackage pkg, bool? value)
         {
             pkg.Write(value.HasValue);
             
@@ -221,11 +203,9 @@ namespace ValheimPlus.Utility
             }
         }
         
-        public static bool? ReadBool(this ZPackage pkg)
-        {
-            bool hasValue = pkg.ReadBool();
-            
-            if (hasValue)
+        public static bool? ReadNullableBool(this ZPackage pkg)
+        {            
+            if (pkg.ReadBool())
             {
                 return pkg.ReadBool();
             }
@@ -233,7 +213,7 @@ namespace ValheimPlus.Utility
             return null;
         }
 
-        public static void WriteNullableString(this ZPackage pkg, string value)
+        public static void WriteNullable(this ZPackage pkg, string value)
         {
             pkg.Write(value != null);
             
@@ -244,10 +224,8 @@ namespace ValheimPlus.Utility
         }
         
         public static string ReadNullableString(this ZPackage pkg)
-        {
-            bool hasValue = pkg.ReadBool();
-            
-            if (hasValue)
+        {            
+            if (pkg.ReadBool())
             {
                 return pkg.ReadString();
             }
@@ -259,8 +237,15 @@ namespace ValheimPlus.Utility
         {
             obj.Serialize(pkg);
         }
+
         public static void Write<T>(this ZPackage pkg, List<T> objects) where T : IZPackageable
         {
+            if ( objects == null )
+            {
+                pkg.Write(0);
+                return;
+            }
+
             pkg.Write(objects.Count);
 
             foreach(T obj in objects)
@@ -291,7 +276,6 @@ namespace ValheimPlus.Utility
 
             return result;
         }
-
 
         public static T ReadPackageable<T>(this ZPackage pkg, T into) where T : IZPackageable
         {
